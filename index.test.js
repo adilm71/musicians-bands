@@ -70,4 +70,10 @@ describe("Band, Musician, and Song Models", () => {
 
     expect(musicianDelete).toBeTruthy();
   });
+  test("can associate musicians with a band", async () => {
+    const bands = await Band.findAll();
+    const musicians = await Musician.findAll();
+    await bands[0].addMusicians(musicians);
+    expect(bands.length).toBe(musicians.length);
+  });
 });
